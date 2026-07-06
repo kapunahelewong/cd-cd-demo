@@ -1,0 +1,22 @@
+{
+  "name": "cicd-demo",
+  "version": "1.0.0",
+  "description": "A small demo project pairing a CI/CD blog series with working GitHub Actions workflows.",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint . --ext .ts",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "build": "tsc -p tsconfig.json",
+    "docs:generate": "node scripts/generate-docs.js",
+    "docs:build": "node scripts/build-docs-site.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "eslint": "^9.5.0",
+    "prettier": "^3.3.2",
+    "typescript": "^5.5.2",
+    "vitest": "^1.6.0",
+    "typescript-eslint": "^8.0.0"
+  }
+}

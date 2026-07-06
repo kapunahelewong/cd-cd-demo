@@ -1,0 +1,53 @@
+name: CD
+
+# CD answers a different question: should this now go live. It only
+# runs after CI has succeeded on main, and it is what actually builds
+# and publishes the documentation site. See blog Part 1 and Part 2.
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    branches: [main]
+    types: [completed]
+
+concurrency:
+  group: deploy-docs
+  cancel-in-progress: true
+
+permissions:
+  pages: write
+  id-token: write
+
+jobs:
+  build-docs:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+      - run: npm ci
+
+      - name: Generate reference content from OpenAPI spec
+        run: npm run docs:generate
+
+      - name: Build static docs site
+        run: npm run docs:build
+
+      - name: Upload docs site as a Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/dist
+
+  deploy-docs:
+    needs: build-docs
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

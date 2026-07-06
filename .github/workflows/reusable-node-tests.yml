@@ -1,0 +1,25 @@
+name: Reusable Node Tests
+
+# A reusable workflow, callable from other workflows or other repos via
+# `uses: ./.github/workflows/reusable-node-tests.yml`. See blog Part 3
+# for when to reach for a reusable workflow versus a composite action.
+
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        description: "Node.js version to test against"
+        required: true
+        type: string
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: "npm"
+      - run: npm ci
+      - run: npm test

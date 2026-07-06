@@ -1,0 +1,29 @@
+openapi: 3.0.3
+info:
+  title: Greeting API
+  description: A minimal API used only to demonstrate a documentation build pipeline.
+  version: 1.0.0
+paths:
+  /greeting/{name}:
+    get:
+      summary: Get a greeting for a given name
+      operationId: getGreeting
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A greeting message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Hello, Kapunahele!"
+        "400":
+          description: Name was empty or invalid

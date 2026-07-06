@@ -1,0 +1,12 @@
+name: "Set up project"
+description: "Checks out the repo, sets up Node.js, and installs dependencies. Reused across jobs that all need the same setup steps."
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: "npm"
+    - run: npm ci
+      shell: bash
