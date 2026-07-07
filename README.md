@@ -1,6 +1,6 @@
 # CI/CD Demo: GitHub Actions in Practice
 
-[![CI](https://github.com/kapunahelewong/cd-cd-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/kapunahelewong/cd-cd-demo/actions/workflows/ci.yml)[![CD](https://github.com/kapunahelewong/cd-cd-demo/actions/workflows/cd.yml/badge.svg)](https://github.com/kapunahelewong/cd-cd-demo/actions/workflows/cd.yml)
+[![CI](https://github.com/kapunahelewong/cd-cd-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/kapunahelewong/cd-cd-demo/actions/workflows/ci.yml) [![CD](https://github.com/kapunahelewong/cd-cd-demo/actions/workflows/cd.yml/badge.svg)](https://github.com/kapunahelewong/cd-cd-demo/actions/workflows/cd.yml)
 
 This repo is the companion project for a three part blog series on [CI/CD with GitHub Actions](https://kapunahelewong.github.io/posts/ci-cd-basics/). It is a small, dependency light TypeScript project whose only real purpose is to give the workflows something real to lint, test, build, and deploy.
 
